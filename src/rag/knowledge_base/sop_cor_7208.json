@@ -1,0 +1,30 @@
+{
+  "doc_id": "SOP-COR-7208",
+  "title": "Core Speed Discrepancy & Fuel Flow to Ps30 Ratio Imbalance",
+  "subsystem": "Combustor & Fuel Control System (FADEC)",
+  "affected_sensors": ["sensor_9", "sensor_12", "sensor_14"],
+  "telemetry_indicators": {
+    "sensor_9": "Physical core speed exhibits abnormal oscillation or exceeds 9065 rpm",
+    "sensor_12": "Ratio of fuel flow to Ps30 drops or deviates > 3% from scheduled curve",
+    "sensor_14": "Corrected core speed shows non-linear divergence"
+  },
+  "root_causes": [
+    "Fuel metering unit (FMU) servo valve stiction or contamination",
+    "Combustor fuel nozzle spray tip carbon coking causing asymmetric spray pattern",
+    "Hydro-mechanical unit pressure differential transducer drift"
+  ],
+  "urgency": "HIGH",
+  "dispatch_protocol": "Requires FADEC fault log dump and fuel nozzle functional bench test before next dispatch.",
+  "inspection_procedure": [
+    "Step 1: Download non-volatile memory (NVM) diagnostic faults from Engine Electronic Controller (EEC/FADEC).",
+    "Step 2: Remove fuel nozzles 1 through 18 and inspect for carbon deposit buildup and flow asymmetry.",
+    "Step 3: Measure fuel manifold delta-P during dry crank cycle.",
+    "Step 4: Conduct high-pressure filter differential pressure switch verification."
+  ],
+  "replacement_parts": [
+    {"part_name": "Simplex/Duplex Fuel Nozzle Set (18 units)", "part_number": "P/N FNZ-7208-18S"},
+    {"part_name": "Main Fuel Metering Valve Assembly", "part_number": "P/N FMV-CORE-902"},
+    {"part_name": "Fuel Filter Micron Element", "part_number": "P/N FLT-JET-05"}
+  ],
+  "safety_advisories": "Depressurize aircraft fuel feed manifold to 0 psi before loosening B-nut fittings. Ground static bonding clip required."
+}

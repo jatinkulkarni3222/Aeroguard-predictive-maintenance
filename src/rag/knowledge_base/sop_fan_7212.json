@@ -1,0 +1,30 @@
+{
+  "doc_id": "SOP-FAN-7212",
+  "title": "Fan Bypass Ratio Divergence & Mechanical Vibration Imbalance",
+  "subsystem": "Low Pressure Fan & Bypass Duct",
+  "affected_sensors": ["sensor_2", "sensor_8", "sensor_15"],
+  "telemetry_indicators": {
+    "sensor_15": "Bypass Ratio exceeds 8.48 (nominal 8.35 - 8.44)",
+    "sensor_2": "Total pressure at LPC outlet drops below 642.0 psia",
+    "sensor_8": "Physical fan speed displays high standard deviation or low-frequency flutter"
+  },
+  "root_causes": [
+    "Fan blade leading edge foreign object damage (FOD) or bird strike deformation",
+    "Acoustic lining panel delamination inside the bypass duct",
+    "Fan hub blade root lubrication degradation leading to fretting"
+  ],
+  "urgency": "MODERATE",
+  "dispatch_protocol": "Visual fan inspection within 10 cycles. Dynamic balancing required if vibration exceeds 1.5 IPS.",
+  "inspection_procedure": [
+    "Step 1: Visual and tactile inspection of all wide-chord titanium fan blades for nicks, dents, or tears.",
+    "Step 2: Tap-test acoustic honeycomb liners in bypass duct for voids or disbonding.",
+    "Step 3: Measure fan spinner run-out using dial test indicator.",
+    "Step 4: Execute on-wing single-plane or two-plane dynamic fan trim balance."
+  ],
+  "replacement_parts": [
+    {"part_name": "Titanium Wide-Chord Fan Blade", "part_number": "P/N FAN-7212-WCB"},
+    {"part_name": "Bypass Acoustic Treatment Panel", "part_number": "P/N DUC-7212-PAN"},
+    {"part_name": "Fan Spinner Balance Weight Kit", "part_number": "P/N BAL-WT-330"}
+  ],
+  "safety_advisories": "Install fan blade containment barrier locks during manual windmilling or engine rotation."
+}

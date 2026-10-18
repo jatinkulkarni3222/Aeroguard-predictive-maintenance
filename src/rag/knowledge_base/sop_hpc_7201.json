@@ -1,0 +1,30 @@
+{
+  "doc_id": "SOP-HPC-7201",
+  "title": "High Pressure Compressor (HPC) Static Pressure Loss & Tip Clearance Degradation",
+  "subsystem": "High Pressure Compressor (HPC)",
+  "affected_sensors": ["sensor_3", "sensor_7", "sensor_11"],
+  "telemetry_indicators": {
+    "sensor_11": "Static pressure at HPC outlet drops below 47.0 psia (nominal 47.2 - 47.6 psia)",
+    "sensor_3": "Total pressure at HPC outlet drops under 1580.0 psia",
+    "sensor_7": "Total pressure at HPC outlet shows negative trend slope"
+  },
+  "root_causes": [
+    "Axial compressor blade tip rub and aerodynamic erosion causing excessive clearance",
+    "Fouling of stator vanes from airborne particulates and particulate ingestion",
+    "Variable Stator Vane (VSV) actuator mechanical hysteresis"
+  ],
+  "urgency": "HIGH",
+  "dispatch_protocol": "Conditional Ground Hold if failure probability exceeds 65%. Maximum 25 flight cycles permitted.",
+  "inspection_procedure": [
+    "Step 1: Perform 4-stage borescope inspection through port S3 and S4 to inspect HPC rotor blades for leading-edge pitting.",
+    "Step 2: Measure rotor blade-to-casing tip clearance using optical feeler gauge. Threshold limit: 0.045 inches.",
+    "Step 3: Execute full compressor core wash using demineralized solvent cleaner (MIL-PRF-85704 Type II).",
+    "Step 4: Verify VSV feedback rig pins alignment within +/- 0.5 degrees tolerance."
+  ],
+  "replacement_parts": [
+    {"part_name": "HPC Stage 7-9 Rotor Blade Set", "part_number": "P/N HPC-7201-BLD"},
+    {"part_name": "Compressor Casing Abradable Seal Ring", "part_number": "P/N HPC-7201-SEAL"},
+    {"part_name": "VSV Feedback Actuator Rig Pin Kit", "part_number": "P/N ACT-VSV-8812"}
+  ],
+  "safety_advisories": "Do not exceed ground idle tests during wash cycle. Ensure bleed air valves are isolated."
+}

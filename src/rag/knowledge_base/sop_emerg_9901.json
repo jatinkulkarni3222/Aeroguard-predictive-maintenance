@@ -1,0 +1,28 @@
+{
+  "doc_id": "SOP-EMERG-9901",
+  "title": "Critical RUL Exhaustion & Immediate Aircraft On Ground (AOG) Overhaul Protocol",
+  "subsystem": "Entire Turbofan Powerplant",
+  "affected_sensors": ["sensor_3", "sensor_4", "sensor_9", "sensor_11", "sensor_15"],
+  "telemetry_indicators": {
+    "composite_risk": "ML Failure probability within 30 cycles > 75.0%",
+    "estimated_rul": "Remaining Useful Life estimated at under 20 operating cycles",
+    "compound_anomalies": "Simultaneous divergent readings in both compressor pressure (S11) and turbine temperature (S4)"
+  },
+  "root_causes": [
+    "Run-to-failure end-of-life component degradation across multiple thermal-mechanical stages",
+    "High probability of in-flight shutdown (IFSD) or uncontained failure if operated without major shop visit"
+  ],
+  "urgency": "EMERGENCY_SHUTDOWN",
+  "dispatch_protocol": "REVOKE ETOPS AND FLIGHT CLEARANCE IMMEDIATELY. Ferry flight to certified MRO overhaul facility only.",
+  "inspection_procedure": [
+    "Step 1: Ground powerplant immediately upon landing; log engine serial number into AOG priority registry.",
+    "Step 2: Quarantine oil filter and chip detector plugs for spectrometric oil analysis (SOAP).",
+    "Step 3: Disconnect quick engine change (QEC) harness and prepare engine for removal from pylon.",
+    "Step 4: Dispatch engine to FAA/EASA Part 145 overhaul depot for complete core module disassembly."
+  ],
+  "replacement_parts": [
+    {"part_name": "Full Core Overhaul Module (Exchange)", "part_number": "P/N MOD-CORE-FD001"},
+    {"part_name": "Engine Mount Vibration Isolator Bolts", "part_number": "P/N MNT-ISO-9901"}
+  ],
+  "safety_advisories": "Mandatory red-tag engine control switch. Do not attempt high-power ground run."
+}

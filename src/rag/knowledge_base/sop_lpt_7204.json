@@ -1,0 +1,30 @@
+{
+  "doc_id": "SOP-LPT-7204",
+  "title": "Low Pressure Turbine (LPT) Thermal Creep & Outlet Temperature Surge",
+  "subsystem": "Low Pressure Turbine (LPT) / Exhaust Gas",
+  "affected_sensors": ["sensor_4", "sensor_17", "sensor_21"],
+  "telemetry_indicators": {
+    "sensor_4": "Total temperature at LPT outlet exceeds 1410.0 deg R (nominal 1395 - 1405 deg R)",
+    "sensor_17": "Bleed Enthalpy rises above 394 kJ/kg",
+    "sensor_21": "LPT Coolant bleed drops below nominal cooling flow"
+  },
+  "root_causes": [
+    "Turbine blade thermal barrier coating (TBC) spallation and severe oxidation",
+    "Blocked or choked secondary cooling bleed passages in stage 2 nozzle guide vanes",
+    "Gas path thermal fatigue causing inter-stage seal degradation"
+  ],
+  "urgency": "CRITICAL",
+  "dispatch_protocol": "Immediate AOG (Aircraft On Ground) alert if sensor_4 exceeds 1420 deg R. Mandatory boroblend or replacement.",
+  "inspection_procedure": [
+    "Step 1: Inspect LPT Stage 1 and 2 nozzle guide vanes (NGV) for trailing-edge burning or molten spatter.",
+    "Step 2: Check LPT coolant flow path using thermal imaging or pressurized argon leak detection.",
+    "Step 3: Measure Exhaust Gas Temperature (EGT) margin at takeoff rated thrust.",
+    "Step 4: Verify thermocouples calibration on Sensor 4 harness connectors."
+  ],
+  "replacement_parts": [
+    {"part_name": "LPT Nozzle Guide Vane Assembly", "part_number": "P/N LPT-7204-NGV"},
+    {"part_name": "Thermal Barrier Ceramic Shroud Tile Kit", "part_number": "P/N TBC-SHR-4421"},
+    {"part_name": "Dual Thermocouple Harness Probe", "part_number": "P/N SEN-THRM-04"}
+  ],
+  "safety_advisories": "Allow minimum 4 hours cool-down before borescope insertion into turbine gas path to prevent lens damage."
+}
