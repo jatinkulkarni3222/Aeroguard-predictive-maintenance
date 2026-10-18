@@ -22,3 +22,8 @@ Thumbs.db
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
+
+# Personal interview preparation materials
+*interview*
+*handbook*
+docs/INTERVIEW_*
