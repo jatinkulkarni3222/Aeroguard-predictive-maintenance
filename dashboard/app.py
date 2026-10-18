@@ -199,7 +199,7 @@ with tab2:
     unit_ids = sorted(full_df["unit"].unique())
     selected_unit = st.selectbox("Select Engine Unit ID to Inspect:", unit_ids, index=0)
 
-    unit_data = inference_svc.load_unit_history(selected_unit)
+    unit_data = inference_svc.load_unit_history(selected_unit, df_source=full_df)
 
     if unit_data is not None:
         max_c = int(unit_data["time_cycle"].max())
@@ -304,7 +304,7 @@ with tab3:
         eng_id = st.number_input("Target Engine Unit ID:", min_value=1, max_value=100, value=selected_unit)
         
         # Pull latest telemetry for that unit
-        unit_history = inference_svc.load_unit_history(eng_id)
+        unit_history = inference_svc.load_unit_history(eng_id, df_source=full_df)
         if unit_history is not None:
             latest_row = unit_history.iloc[-1]
             default_cycle = int(latest_row["time_cycle"])

@@ -173,15 +173,19 @@ class PredictiveMaintenanceInferenceService:
 
         return factors
 
-    def load_unit_history(self, unit_id: int) -> Optional[pd.DataFrame]:
+    def load_unit_history(self, unit_id: int, df_source: Optional[pd.DataFrame] = None) -> Optional[pd.DataFrame]:
         """
         Loads feature history for a specific unit and computes cycle-by-cycle risk trajectory.
+        Accepts optional df_source to avoid reading from disk.
         """
-        feat_path = self.data_dir / "03-features" / "FD001_features.csv"
-        if not feat_path.exists():
-            return None
+        if df_source is not None:
+            df = df_source
+        else:
+            feat_path = self.data_dir / "03-features" / "FD001_features.csv"
+            if not feat_path.exists():
+                return None
+            df = pd.read_csv(feat_path)
 
-        df = pd.read_csv(feat_path)
         unit_df = df[df["unit"] == unit_id].sort_values("time_cycle").copy()
         if unit_df.empty:
             return None
