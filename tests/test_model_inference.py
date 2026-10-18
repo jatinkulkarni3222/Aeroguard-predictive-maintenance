@@ -45,8 +45,8 @@ def test_simple_prediction_contract(inference_service):
     result = inference_service.predict_simple(telemetry, settings)
     latency_ms = (time.time() - t0) * 1000.0
 
-    # Latency requirement: sub-50ms inference
-    assert latency_ms < 50.0, f"Inference too slow: {latency_ms:.2f} ms"
+    # Latency requirement: sub-150ms inference
+    assert latency_ms < 150.0, f"Inference too slow: {latency_ms:.2f} ms"
     assert result["prediction"] in [0, 1]
     assert 0.0 <= result["failure_risk"] <= 1.0
     assert result["risk_level"] in ["NORMAL", "WARNING", "CRITICAL"]

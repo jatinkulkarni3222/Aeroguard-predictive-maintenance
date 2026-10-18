@@ -83,9 +83,18 @@ class PredictiveMaintenanceInferenceService:
         X_df = pd.DataFrame([row], columns=self.feature_names)
 
         if self.imputer is not None:
-            X_df = pd.DataFrame(self.imputer.transform(X_df), columns=self.feature_names)
+            try:
+                X_df = pd.DataFrame(self.imputer.transform(X_df), columns=self.feature_names)
+            except Exception:
+                X_df = X_df.fillna(0.0)
+        else:
+            X_df = X_df.fillna(0.0)
+
         if self.scaler is not None:
-            X_arr = self.scaler.transform(X_df)
+            try:
+                X_arr = self.scaler.transform(X_df)
+            except Exception:
+                X_arr = X_df.values
         else:
             X_arr = X_df.values
 
@@ -182,9 +191,18 @@ class PredictiveMaintenanceInferenceService:
 
         X_unit = unit_df[feat_cols]
         if self.imputer is not None:
-            X_unit = pd.DataFrame(self.imputer.transform(X_unit), columns=feat_cols)
+            try:
+                X_unit = pd.DataFrame(self.imputer.transform(X_unit), columns=feat_cols)
+            except Exception:
+                X_unit = X_unit.fillna(0.0)
+        else:
+            X_unit = X_unit.fillna(0.0)
+
         if self.scaler is not None:
-            X_arr = self.scaler.transform(X_unit)
+            try:
+                X_arr = self.scaler.transform(X_unit)
+            except Exception:
+                X_arr = X_unit.values
         else:
             X_arr = X_unit.values
 

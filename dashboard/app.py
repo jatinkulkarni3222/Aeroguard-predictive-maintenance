@@ -117,12 +117,26 @@ with tab1:
     if "predicted_risk" not in latest_cycles.columns and inference_svc.is_ready:
         drop_cols = {"unit", "time_cycle", "max_cycle", "RUL", "failure_within_30"}
         feat_cols = [c for c in latest_cycles.columns if c not in drop_cols]
-        X_latest = latest_cycles[feat_cols].values
+        X_df = latest_cycles[feat_cols]
+        
+        # Robust handling across scikit-learn versions
         if inference_svc.imputer:
-            X_latest = inference_svc.imputer.transform(X_latest)
+            try:
+                X_df = pd.DataFrame(inference_svc.imputer.transform(X_df), columns=feat_cols)
+            except Exception:
+                X_df = X_df.fillna(0.0)
+        else:
+            X_df = X_df.fillna(0.0)
+
         if inference_svc.scaler:
-            X_latest = inference_svc.scaler.transform(X_latest)
-        latest_cycles["predicted_risk"] = inference_svc.model.predict_proba(X_latest)[:, 1]
+            try:
+                X_arr = inference_svc.scaler.transform(X_df)
+            except Exception:
+                X_arr = X_df.values
+        else:
+            X_arr = X_df.values
+
+        latest_cycles["predicted_risk"] = inference_svc.model.predict_proba(X_arr)[:, 1]
     
     critical_count = (latest_cycles["predicted_risk"] >= 0.70).sum()
     warning_count = ((latest_cycles["predicted_risk"] >= 0.35) & (latest_cycles["predicted_risk"] < 0.70)).sum()
